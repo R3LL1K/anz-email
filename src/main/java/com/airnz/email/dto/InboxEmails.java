@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
+import lombok.Builder.Default;
 
 @Builder
 @Data
@@ -16,6 +17,7 @@ public class InboxEmails {
     String sender;
     String subject;
     String content;
-    boolean starred;
+    @Default
+    boolean starred = false;
     String label;
 }

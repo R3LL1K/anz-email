@@ -6,6 +6,7 @@ import java.util.List;
 import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
+import lombok.Builder.Default;
 
 @Builder
 @Data
@@ -17,7 +18,9 @@ public class OutboxEmails {
     private List<String> recipients;
     private String subject;
     private String content;
-    private String starred;
+
+    @Default
+    private boolean starred = false;
     private String label;
 
 }

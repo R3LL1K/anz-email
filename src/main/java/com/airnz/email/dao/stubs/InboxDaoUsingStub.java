@@ -8,15 +8,15 @@ import java.util.stream.Stream;
 import org.springframework.stereotype.Service;
 
 import com.airnz.email.dao.InboxDao;
-import com.airnz.email.dto.Email;
+import com.airnz.email.dto.InboxEmails;
 
 @Service
 public class InboxDaoUsingStub implements InboxDao {
 
     @Override
-    public List<Email> retrieveAllInboxEmail() {
+    public List<InboxEmails> retrieveAllInboxEmail() {
 
-        return Stream.of(Email.builder()
+        return Stream.of(InboxEmails.builder()
                 .id(UUID.randomUUID().toString())
                 .timestamp(LocalDateTime.now())
                 .sender("test@airnz.com")

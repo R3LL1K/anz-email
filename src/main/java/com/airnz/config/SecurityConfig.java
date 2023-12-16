@@ -21,6 +21,7 @@ public class SecurityConfig {
     public SecurityConfig(BasicAuthenticationEntryPoint basicAuthenticationEntryPoint) {
         this.basicAuthenticationEntryPoint = basicAuthenticationEntryPoint;
     }
+    
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeRequests()

@@ -12,3 +12,5 @@ The incomplete ones are
 - update the contents of one or more email
 
 The postman collection has been included in the commit for functionally testing the apis. This is under ```src/test/resources```.
+
+I used basic auth as a means in which this api could be used by multiple users. Currently it's making use of an in memory store which is storing only 1 user. However, If a db is implemented, we could validate each user and query the emails for each of the specific users

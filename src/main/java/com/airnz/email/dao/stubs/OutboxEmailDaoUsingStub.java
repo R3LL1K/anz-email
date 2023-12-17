@@ -1,5 +1,7 @@
 package com.airnz.email.dao.stubs;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
 import com.airnz.config.EmailsDB;
@@ -12,7 +14,14 @@ public class OutboxEmailDaoUsingStub implements OutboxEmailDao {
     @Override
     public void save(OutboxEmails email) {
 
-        EmailsDB.OUTBOX().add(email);
+        EmailsDB.OUTBOX().put(email.getId(), email);
+    }
+
+    @Override
+    public Optional<OutboxEmails> findById(String emailId) {
+        return EmailsDB.OUTBOX().keySet().contains(emailId) 
+            ? Optional.ofNullable(EmailsDB.OUTBOX().get(emailId)) 
+            : Optional.empty();
     }
     
 }

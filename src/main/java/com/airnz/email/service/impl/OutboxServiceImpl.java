@@ -1,5 +1,6 @@
 package com.airnz.email.service.impl;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,19 @@ public class OutboxServiceImpl implements OutboxService {
 
     @Override
     public OutboxEmails saveEmail(OutboxEmails email) {
-        email.setId(UUID.randomUUID().toString());
+
+        /*check if the email id is set, if it is, than update the the outbox email, otherwise insert */ 
+        if (email.getId() != null && !email.getId().isEmpty()) {
+            Optional<OutboxEmails> savedMail = outboxEmailDao.findById(email.getId());
+
+            if (savedMail.isEmpty()) {
+                email.setId(UUID.randomUUID().toString());
+            } else {
+                email.setId(savedMail.get().getId());
+            }
+        } else {
+            email.setId(UUID.randomUUID().toString());
+        }
         outboxEmailDao.save(email);
         return email;
     }

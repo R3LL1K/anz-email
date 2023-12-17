@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,11 +40,18 @@ public class EmailController {
         return inboxService.retrieveAllInboxEmails();
     }
 
-    @PostMapping(path = "/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public OutboxEmails writeAndSaveEmail(@RequestBody OutboxEmails email) {
-        log.info("write and save email : % ", email);
+    @PutMapping(path = "/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity writeAndSaveEmail(@RequestBody OutboxEmails email) {
+        log.info("write and save email : {} ", email);
         outboxService.saveEmail(email);
-        return email;
+        return ResponseEntity.ok().body(email);
+    }
+
+    @PostMapping(path = "/", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void sendEmail(@RequestBody OutboxEmails email) {
+        log.info("sending email: {}", email.getId());
+
+        // outboxService.
     }
 
 }

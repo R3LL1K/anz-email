@@ -20,10 +20,12 @@ public class EmailsDB {
 
     private static List<OutboxEmails> outBoxList = new ArrayList<>();
 
+    private static Map<String, OutboxEmails> outbox = new HashMap<>();
 
-    public static List<OutboxEmails> OUTBOX() {
-        log.info("Outbox list size: {}", outBoxList.size());
-        return outBoxList;
+
+    public static Map<String, OutboxEmails> OUTBOX() {
+        log.info("Outbox list size: {}", outbox.size());
+        return outbox;
     }
 
 }

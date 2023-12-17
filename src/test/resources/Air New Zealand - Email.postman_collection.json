@@ -1,0 +1,153 @@
+{
+	"info": {
+		"_postman_id": "d31e5ff2-641d-4f13-84e8-5328e8441d38",
+		"name": "Air New Zealand - Email",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6604629"
+	},
+	"item": [
+		{
+			"name": "healthcheck",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "user",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/healthcheck",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"healthcheck"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "retrieveInboxContents",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "user",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/v1/email/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"email",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "writeAndSaveEmail",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.variables.get(\"id\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n    {\r\n        \"timestamp\": \"2023-12-16T23:29:55.3741517\",\r\n        \"recipients\": [\"test@airnz.com\"],\r\n        \"subject\": \"Flight Tickets\",\r\n        \"content\": \"This is an email confirming your flight tickets\",\r\n        \"label\": \"travel\"\r\n    }\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/v1/email/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"email",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "writeAndSaveEmail Copy",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n    {\r\n        \"timestamp\": \"2023-12-16T23:29:55.3741517\",\r\n        \"recipients\": [\"test@airnz.com\"],\r\n        \"subject\": \"Flight Tickets\",\r\n        \"content\": \"This is an email confirming your flight tickets\",\r\n        \"label\": \"travel\"\r\n    }\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/v1/email/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"email",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
